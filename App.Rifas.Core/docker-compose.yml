@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  app.rifas.core:
+    container_name: 'app.rifas.core'
+    image: ${DOCKER_REGISTRY-}apprifascore
+    build:
+      context: .
+      dockerfile: App.Rifas.Core.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "3000:80"
+  db:
+    container_name: 'app.rifas.db'
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "mycoursedb"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  
+  pgadmin:
+    container_name: 'db-pgadmin'
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pedro@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db

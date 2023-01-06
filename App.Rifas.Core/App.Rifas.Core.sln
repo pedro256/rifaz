@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Rifas.Core", "App.Rifas.Core\App.Rifas.Core.csproj", "{63877482-1D16-43EB-BBCF-2668209EAD53}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4E1A2F01-5340-4A60-BA62-781EB6DDE338}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63877482-1D16-43EB-BBCF-2668209EAD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63877482-1D16-43EB-BBCF-2668209EAD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63877482-1D16-43EB-BBCF-2668209EAD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63877482-1D16-43EB-BBCF-2668209EAD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1A2F01-5340-4A60-BA62-781EB6DDE338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1A2F01-5340-4A60-BA62-781EB6DDE338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1A2F01-5340-4A60-BA62-781EB6DDE338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1A2F01-5340-4A60-BA62-781EB6DDE338}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC0A18F6-D233-433C-8F08-D09239638961}
+	EndGlobalSection
+EndGlobal
