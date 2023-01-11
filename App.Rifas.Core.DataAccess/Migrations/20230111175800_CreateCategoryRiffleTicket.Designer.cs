@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace App.Rifas.Core.DataAccess.Migrations
 {
     [DbContext(typeof(RifazDBContext))]
-    [Migration("20230111153930_CreateUserTable")]
-    partial class CreateUserTable
+    [Migration("20230111175800_CreateCategoryRAFFLETicket")]
+    partial class CreateCategoryRAFFLETicket
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

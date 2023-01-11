@@ -12,29 +12,28 @@ namespace App.Rifas.Core.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-               name: "user",
+               name: "USERS",
                columns: table => new
                {
-                   Id = table.Column<int>(nullable: false,name:"ID")
+                   Id = table.Column<int>(nullable: false, name: "ID")
                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                   CreatedDate = table.Column<DateTime>(nullable: false),
-                   UpdatedDate = table.Column<DateTime>(nullable: false),
-                   Name = table.Column<string>(nullable: true),
-                   Email = table.Column<string>(nullable: true),
-                   Password = table.Column<string>(nullable: true),
-                   BirthDate = table.Column<DateTime>(nullable: false)
+                   CreatedDate = table.Column<DateTime>(nullable: false,name:"CREATED_AT"),
+                   UpdatedDate = table.Column<DateTime>(nullable: false,name:"UPDATED_AT"),
+                   Name = table.Column<string>(nullable: false,name:"NAME"),
+                   Email = table.Column<string>(nullable: false,name:"EMAIL"),
+                   Password = table.Column<string>(nullable: false,name:"PASSWORD"),
+                   BirthDate = table.Column<DateTime>(nullable: false,name:"BIRTH_DATE")
                },
                constraints: table =>
                {
-                   table.PrimaryKey("PK_user", x => x.Id);
+                   table.PrimaryKey("PK_USER", x => x.Id);
                });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "user");
+            migrationBuilder.DropTable("USERS");
         }
     }
 }
