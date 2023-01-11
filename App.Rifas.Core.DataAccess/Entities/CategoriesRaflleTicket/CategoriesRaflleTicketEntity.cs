@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace App.Rifas.Core.DataAccess.Entities.CategoriesRaflleTicket
 {
+    [Table("CATEGORIES_RAFFLE_TICKET")]
     public class CategoriesRaflleTicketEntity
     {
         [Key]
-        public int Id { get; set; }   
-        public string Name { get; set; } 
+        [Column("ID")]
+        public int Id { get; set; }
+        [Column("NAME")]
+        public string Name { get; set; }
+        [Column("DESCRIPTION")]
         public string Description { get; set; }
     }
 }

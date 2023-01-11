@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace App.Rifas.Core.DataAccess.Entities.Users
 {
-    [Table("USER")]
+    [Table("USERS")]
     public class UserEntity
     {
         [Key]
+        [Column("ID")]
         private int Id { get; set; }
+        [Column("NAME")]
         private string Name { get; set; }
+        [Column("EMAIL")]
         private string Email { get; set; }
+        [Column("PASSWORD")]
         private string Password { get; set; }
+        [Column("BIRTH_DATE")]
         private DateTime BirthDate { get; set; }
     }
 }

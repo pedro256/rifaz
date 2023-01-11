@@ -8,21 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Rifas.Core.DataAccess.Entities.RaffleTicket
+namespace App.Rifas.Core.DataAccess.Entities.RAFFLETicket
 {
     [Table("RAFFLE_TICKET")]
-    public class RaffleTicketEntity
+    public class RAFFLETicketEntity
     {
         [Key]
+        [Column("ID")]
         private int Id { get; set; }
+        [Column("TITLE")]
         private string Title { get; set; }
+        [Column("PROTOCOL")]
         private string Protocol { get; set; }
+        [Column("DESCRIPTION")]
         private string Description { get; set; }
 
         [ForeignKey(nameof(UserEntity))]
+        [Column("OWNER_ID")]
         public int OwnerId { get; set; }
 
         [ForeignKey(nameof(CategoriesRaflleTicketEntity))]
+        [Column("CATEGORY_ID")]
         private int CategoryId { get; set; }
     }
 }
