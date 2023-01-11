@@ -11,7 +11,7 @@ app de rifas
 
     cd App.Rifas.Core.DataAccess
 
-    dotnet ef --startup-project ../App.Rifas.Core.Api/ migrations add myMigration01
+    dotnet ef --startup-project ../App.Rifas.Core.Api/App.Rifas.Core.Api migrations add myMigration01
 
 
 ### UPDATE MIGRATIONS
