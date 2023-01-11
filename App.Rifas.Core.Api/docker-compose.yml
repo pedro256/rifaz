@@ -1,23 +1,23 @@
 version: '3.4'
 
 services:
-  app.rifas.core:
-    container_name: 'app.rifas.core'
-    image: ${DOCKER_REGISTRY-}apprifascore
-    build:
-      context: .
-      dockerfile: App.Rifas.Core.Api/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "3000:80"
+  # app.rifas.core:
+  #   container_name: 'app.rifas.core'
+  #   image: ${DOCKER_REGISTRY-}apprifascore
+  #   build:
+  #     context: .
+  #     dockerfile: App.Rifas.Core.Api/Dockerfile
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #   ports:
+  #     - "3000:3000"
   db:
     container_name: 'app.rifas.db'
     image: postgres
     environment:
       POSTGRES_PASSWORD: "1234"
       POSTGRES_USER: "root"
-      POSTGRES_DB: "mycoursedb"
+      POSTGRES_DB: "rifaz"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:

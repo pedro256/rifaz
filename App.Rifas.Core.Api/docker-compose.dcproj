@@ -8,7 +8,7 @@
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>app.rifas.core</DockerServiceName>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup> 
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>
