@@ -1,4 +1,9 @@
 ﻿using App.Rifas.Core.DataAccess.Entities.Base;
+using App.Rifas.Core.DataAccess.Entities.CategoriesRaflleTicket;
+using App.Rifas.Core.DataAccess.Entities.Raffle;
+using App.Rifas.Core.DataAccess.Entities.RafflePrize;
+using App.Rifas.Core.DataAccess.Entities.RaffleTickets;
+using App.Rifas.Core.DataAccess.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -11,6 +16,13 @@ namespace App.Rifas.Core.DataAccess.Context
 {
     public class RifazDBContext : DbContext
     {
+        public DbSet<UserEntity> UserEntity { get; set; }
+        public DbSet<CategoriesRaflleEntity> CategoriesRaflleEntity { get; set; }
+        public DbSet<RaffleEntity> RaffleEntity { get; set; }
+        public DbSet<RafflePrizeEntity> RafflePrizeEntity { get; set; }
+        public DbSet<RaffleTicketsEntity> RaffleTicketsEntity { get; set; }
+
+
 
         public RifazDBContext(DbContextOptions<RifazDBContext> options) : base(options)
         {

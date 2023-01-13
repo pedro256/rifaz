@@ -19,7 +19,7 @@ namespace App.Rifas.Core.DataAccess.Migrations
                       .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                   CreatedDate = table.Column<DateTime>(nullable: false, name: "CREATED_AT"),
                   UpdatedDate = table.Column<DateTime>(nullable: false, name: "UPDATED_AT"),
-                  NumTicket = table.Column<string>(nullable: false, name: "NUM_TICKER"),
+                  NumTicket = table.Column<string>(nullable: false, name: "NUM_TICKET"),
                   UserId = table.Column<int>(nullable: false, name: "USER_ID"),
                   RaffleId = table.Column<int>(nullable: false, name: "RAFFLE_ID")
               },

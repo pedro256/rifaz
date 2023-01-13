@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Rifas.Core.DataAccess.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace App.Rifas.Core.DataAccess.Entities.CategoriesRaflleTicket
 {
-    [Table("CATEGORIES_RAFFLE_TICKET")]
-    public class CategoriesRaflleTicketEntity
+    [Table("RAFFLE_CATEGORY")]
+    public class CategoriesRaflleEntity : BaseEntity
     {
         [Key]
         [Column("ID")]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Rifas.Core.DataAccess.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,18 +10,18 @@ using System.Threading.Tasks;
 namespace App.Rifas.Core.DataAccess.Entities.Users
 {
     [Table("USERS")]
-    public class UserEntity
+    public class UserEntity : BaseEntity
     {
         [Key]
         [Column("ID")]
-        private int Id { get; set; }
+        public int Id { get; set; }
         [Column("NAME")]
-        private string Name { get; set; }
+        public string Name { get; set; }
         [Column("EMAIL")]
-        private string Email { get; set; }
+        public string Email { get; set; }
         [Column("PASSWORD")]
-        private string Password { get; set; }
+        public string Password { get; set; }
         [Column("BIRTH_DATE")]
-        private DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
     }
 }

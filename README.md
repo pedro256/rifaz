@@ -2,6 +2,7 @@
 # rifaz
 app de rifas
 
+![enter image description here](./img/re.png)
 
 ## ANOTATIONS
 

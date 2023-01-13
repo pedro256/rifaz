@@ -1,4 +1,5 @@
-﻿using App.Rifas.Core.DataAccess.Entities.CategoriesRaflleTicket;
+﻿using App.Rifas.Core.DataAccess.Entities.Base;
+using App.Rifas.Core.DataAccess.Entities.CategoriesRaflleTicket;
 using App.Rifas.Core.DataAccess.Entities.Users;
 using System;
 using System.Collections.Generic;
@@ -8,27 +9,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Rifas.Core.DataAccess.Entities.RAFFLETicket
+namespace App.Rifas.Core.DataAccess.Entities.Raffle
 {
-    [Table("RAFFLE_TICKET")]
-    public class RAFFLETicketEntity
+    [Table("RAFFLE")]
+    public class RaffleEntity : BaseEntity
     {
         [Key]
         [Column("ID")]
-        private int Id { get; set; }
+        public int Id { get; set; }
         [Column("TITLE")]
-        private string Title { get; set; }
+        public string Title { get; set; }
         [Column("PROTOCOL")]
-        private string Protocol { get; set; }
+        public string Protocol { get; set; }
         [Column("DESCRIPTION")]
-        private string Description { get; set; }
+        public string Description { get; set; }
 
         [ForeignKey(nameof(UserEntity))]
         [Column("OWNER_ID")]
         public int OwnerId { get; set; }
 
-        [ForeignKey(nameof(CategoriesRaflleTicketEntity))]
+        [ForeignKey(nameof(CategoriesRaflleEntity))]
         [Column("CATEGORY_ID")]
-        private int CategoryId { get; set; }
+        public int CategoryId { get; set; }
     }
 }
