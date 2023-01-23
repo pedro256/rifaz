@@ -423,6 +423,16 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "App.Rifas.Core.Mapping/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/App.Rifas.Core.Mapping.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/App.Rifas.Core.Mapping.dll": {}
+        }
       }
     }
   },
@@ -1066,10 +1076,16 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "App.Rifas.Core.Mapping/1.0.0": {
+      "type": "project",
+      "path": "../App.Rifas.Core.Mapping/App.Rifas.Core.Mapping.csproj",
+      "msbuildProject": "../App.Rifas.Core.Mapping/App.Rifas.Core.Mapping.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "App.Rifas.Core.Mapping >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.1",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.1",
@@ -1102,7 +1118,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\acer\\Documents\\repositories\\rifaz\\App.Rifas.Core.Mapping\\App.Rifas.Core.Mapping.csproj": {
+              "projectPath": "C:\\Users\\acer\\Documents\\repositories\\rifaz\\App.Rifas.Core.Mapping\\App.Rifas.Core.Mapping.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

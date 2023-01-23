@@ -26,6 +26,9 @@ namespace App.Rifas.Core.DataAccess.Context
 
         public RifazDBContext(DbContextOptions<RifazDBContext> options) : base(options)
         {
+            this.ChangeTracker.LazyLoadingEnabled = false;
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
         }
 
 

@@ -19,4 +19,8 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\App.Rifas.Core.Mapping\App.Rifas.Core.Mapping.csproj" />
+  </ItemGroup>
+
 </Project>

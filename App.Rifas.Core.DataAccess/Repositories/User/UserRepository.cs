@@ -19,22 +19,22 @@ namespace App.Rifas.Core.DataAccess.Repositories.User
 
         public UserEntity createUser(UserEntity user)
         {
-            _context.UserEntity.Add(user);
-            _context.SaveChanges();
+            Context.UserEntity.Add(user);
+            Context.SaveChanges();
             return user;
         }
 
         public void deleteUser(UserEntity entity)
         {
-            _context.UserEntity.Attach(entity);
-            _context.UserEntity.Remove(entity);
-            _context.SaveChanges();
+            Context.UserEntity.Attach(entity);
+            Context.UserEntity.Remove(entity);
+            Context.SaveChanges();
 
         }
 
         public bool existUserWithEmail(string email)
         {
-            int counter = _context.UserEntity.Count(x => x.Email == email) ;
+            int counter = Context.UserEntity.Count(x => x.Email == email) ;
             if (counter > 0)
             {
                 return true;
