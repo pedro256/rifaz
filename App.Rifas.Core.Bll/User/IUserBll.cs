@@ -14,7 +14,8 @@ namespace App.Rifas.Core.Bll.User
         //void validCreationUserInput(UserIM user);
         UserVM createUser(UserIM user);
         UserVM updateUser(UserIM user);
-        UserVM getUser(int id); 
+        UserVM getUser(int id);
+        bool deleteUser(int id);
         PagedItems<UserVM> ListarPaginado(UserPaginationIM userVM);
         
     }

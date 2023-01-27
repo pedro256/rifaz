@@ -41,7 +41,7 @@ namespace App.Rifas.Core.Api.Controllers
             }
             catch(BadRequestException e)
             {
-                return new BadRequestObjectResult(e);
+                return new BadRequestObjectResult(e.Message);
             }
             
         }
@@ -61,6 +61,20 @@ namespace App.Rifas.Core.Api.Controllers
                 return new NotFoundObjectResult(e.Message);
             }
             
+        }
+        [HttpDelete("{Id}")]
+        public IActionResult Delete(
+            int Id)
+        {
+            try
+            {
+                var result = userBll.deleteUser(Id);
+                return new NoContentResult();
+            }
+            catch (NotFoundException e)
+            {
+                return new NotFoundObjectResult(e.Message);
+            }
         }
     }
 }

@@ -172,5 +172,16 @@ namespace App.Rifas.Core.Bll.User
 
             return user;
         }
+        public bool deleteUser(int id)
+        {
+            UserEntity ett = userRep.Selecionar(x => x.Id == id);
+            if (ett == null)
+            {
+                throw new NotFoundException("User not found.");
+            }
+            userRep.deleteUser(ett);
+
+            return true;
+        }
     }
 }
