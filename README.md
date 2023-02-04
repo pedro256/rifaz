@@ -3,9 +3,10 @@
 app de rifas <br>
 aplicação feita em .Net Core 6
 
+# DATABASE
 
-<img src="./img/re.png" size="50%">
----![enter image description here](./img/re.png)
+<img src="./img/re.png" width="40%">
+
 
 # ANOTATIONS
 
