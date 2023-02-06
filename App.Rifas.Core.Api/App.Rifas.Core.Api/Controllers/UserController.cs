@@ -1,7 +1,7 @@
 ﻿using App.Rifas.Core.Bll.User;
 using App.Rifas.Core.Mapping.Exceptions;
 using App.Rifas.Core.Mapping.Filters;
-using App.Rifas.Core.Mapping.InputModel;
+using App.Rifas.Core.Mapping.InputModel.User;
 using App.Rifas.Core.Mapping.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,15 +34,8 @@ namespace App.Rifas.Core.Api.Controllers
             [FromBody] UserIM user
             )
         {
-            try
-            {
-                var result = userBll.createUser(user);
-                return new CreatedResult("", result);
-            }
-            catch(BadRequestException e)
-            {
-                return new BadRequestObjectResult(e.Message);
-            }
+            var result = userBll.createUser(user);
+            return new CreatedResult("", result);
             
         }
 
@@ -51,30 +44,16 @@ namespace App.Rifas.Core.Api.Controllers
             int Id
             )
         {
-            try
-            {
-                var result = userBll.getUser(Id);
-                return new OkObjectResult(result);
-             }
-            catch(NotFoundException e)
-            {
-                return new NotFoundObjectResult(e.Message);
-            }
-            
+            var result = userBll.getUser(Id);
+            return new OkObjectResult(result);
+
         }
         [HttpDelete("{Id}")]
         public IActionResult Delete(
             int Id)
         {
-            try
-            {
-                var result = userBll.deleteUser(Id);
-                return new NoContentResult();
-            }
-            catch (NotFoundException e)
-            {
-                return new NotFoundObjectResult(e.Message);
-            }
+            var result = userBll.deleteUser(Id);
+            return new NoContentResult();
         }
     }
 }

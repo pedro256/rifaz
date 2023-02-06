@@ -3,17 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Rifas.Core.Controllers
 {
     [ApiController]
-    [Route("teste")]
-    public class WeatherForecastController : ControllerBase
+    [Route("index")]
+    public class IndexController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<IndexController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public IndexController(ILogger<IndexController> logger)
         {
             _logger = logger;
         }

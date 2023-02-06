@@ -27,4 +27,8 @@
     <ProjectReference Include="..\..\App.Rifas.Core.DataAccess\App.Rifas.Core.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NovaPasta\" />
+  </ItemGroup>
+
 </Project>

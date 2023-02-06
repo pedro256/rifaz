@@ -2,7 +2,7 @@
 using App.Rifas.Core.DataAccess.Repositories.User;
 using App.Rifas.Core.Mapping.Exceptions;
 using App.Rifas.Core.Mapping.Filters;
-using App.Rifas.Core.Mapping.InputModel;
+using App.Rifas.Core.Mapping.InputModel.User;
 using App.Rifas.Core.Mapping.ViewModel;
 using System;
 using System.Collections.Generic;

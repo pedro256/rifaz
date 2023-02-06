@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Rifas.Core.Mapping.InputModel
+namespace App.Rifas.Core.Mapping.InputModel.User
 {
     public class UserIM
     {
@@ -13,6 +13,6 @@ namespace App.Rifas.Core.Mapping.InputModel
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
-        public DateTime?  BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
     }
 }

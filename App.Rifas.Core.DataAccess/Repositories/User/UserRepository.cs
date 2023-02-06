@@ -31,7 +31,15 @@ namespace App.Rifas.Core.DataAccess.Repositories.User
             Context.SaveChanges();
 
         }
-
+        public bool ExistsWithId(int Id)
+        {
+            int counter = Context.UserEntity.Count(x => x.Id == Id);
+            if (counter > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public bool existUserWithEmail(string email)
         {
             int counter = Context.UserEntity.Count(x => x.Email == email) ;

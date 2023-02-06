@@ -15,6 +15,7 @@ namespace App.Rifas.Core.DataAccess.Repositories.User
 
         void deleteUser(UserEntity user);
 
+        bool ExistsWithId(int Id);
         bool existUserWithEmail(string email);
     }
 }

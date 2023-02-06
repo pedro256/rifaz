@@ -1,8 +1,12 @@
 using App.Rifas.Core.Api;
+using App.Rifas.Core.Api.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(c =>
+{
+    c.Filters.Add<ExceptionFilter>();
+});
 
 DependenceInjections.Config(builder.Services, builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();

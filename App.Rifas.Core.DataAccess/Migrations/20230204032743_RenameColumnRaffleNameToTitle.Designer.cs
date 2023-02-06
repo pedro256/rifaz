@@ -3,6 +3,7 @@ using System;
 using App.Rifas.Core.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace App.Rifas.Core.DataAccess.Migrations
 {
     [DbContext(typeof(RifazDBContext))]
-    partial class RifazDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230204032743_RenameColumnRaffleNameToTitle")]
+    partial class RenameColumnRaffleNameToTitle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

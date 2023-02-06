@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Rifas.Core.Mapping.InputModel
+namespace App.Rifas.Core.Mapping.ViewModel
 {
-    public class UserPaginationIM: PagedOptions
+    public class RaffleCategoryPaginationQueryVM: PagedOptions
     {
         public string? Name { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
+        public string? Description { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using App.Rifas.Core.DataAccess.Entities.Base;
+using App.Rifas.Core.DataAccess.Entities.Raffle;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,6 +19,8 @@ namespace App.Rifas.Core.DataAccess.Entities.CategoriesRaflleTicket
         [Column("NAME")]
         public string Name { get; set; }
         [Column("DESCRIPTION")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
+
+        //public virtual ICollection<RaffleEntity> Raffles { get; set; }
     }
 }
