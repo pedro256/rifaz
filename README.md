@@ -7,6 +7,14 @@ aplicação feita em .Net Core 6
 
 <img src="./img/re.png" width="40%">
 
+# TOPICS
+- ENTITY FRAMEWORK
+- IM & VM
+- MIGRATIONS
+- DOCKER
+- DOCKER-COMPOSE
+- EXCEPTION FILTER
+	
 
 # ANOTATIONS
 
