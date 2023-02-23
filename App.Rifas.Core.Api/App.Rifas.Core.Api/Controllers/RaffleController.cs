@@ -24,10 +24,10 @@ namespace App.Rifas.Core.Api.Controllers
             return new OkObjectResult(result);
         }
         [HttpGet("{Id}")]
-        public IActionResult Get()
+        public IActionResult Get(int Id)
         {
-
-            return new OkObjectResult(true);
+            var result = raffleBll.get(Id);
+            return new OkObjectResult(result);
         }
 
         [HttpPost]

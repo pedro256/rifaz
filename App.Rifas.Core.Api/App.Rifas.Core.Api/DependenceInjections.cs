@@ -14,6 +14,10 @@ using App.Rifas.Core.DataAccess.Repositories.RaffleCategory;
 using App.Rifas.Core.Bll.RaffleCategory;
 using App.Rifas.Core.DataAccess.Repositories.Raffle;
 using App.Rifas.Core.Bll.Raffle;
+using App.Rifas.Core.DataAccess.Repositories.RafflePrize;
+using App.Rifas.Core.Bll.RafflePrize;
+using App.Rifas.Core.DataAccess.Repositories.RaffleTicket;
+using App.Rifas.Core.Bll.RaffleTicket;
 
 namespace App.Rifas.Core.Api
 {
@@ -52,12 +56,16 @@ namespace App.Rifas.Core.Api
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRaffleCategoryRepository,RaffleCategoryRepository>();
             services.AddScoped<IRaffleRepository, RaffleRepository>();
+            services.AddScoped<IRafflePrizeRepository, RafflePrizeRepository>();
+            services.AddScoped<IRaffleTicketRepository,RaffleTicketRepository>();
             #endregion
 
             #region SERVICES
             services.AddScoped<IUserBll, UserBll>();
             services.AddScoped<IRaffleCategoryBll, RaflleCategoryBll>();
             services.AddScoped<IRaffleBll, RaffleBll>();
+            services.AddScoped<IRafflePrizeBll, RafflePrizeBll>();
+            services.AddScoped<IRaffleTicketBll, RaffleTicketsBll>();
 
             #endregion
 

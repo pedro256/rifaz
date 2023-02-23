@@ -14,23 +14,24 @@ namespace App.Rifas.Core.DataAccess.Entities.RafflePrize
     [Table("RAFFLE_PRIZERS")]
     public class RafflePrizeEntity : BaseEntity
     {
-
+        public virtual UserEntity? Winner { get; set; }
+        public virtual RaffleEntity Raffle { get; set; }
         [Key]
         [Column("ID")]
         public int Id { get; set; }
-
+        [Required]
         [Column("NAME")]
         public string Name { get; set; }
         [Column("DESCRIPTION")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [Column("POSITION")]
         public string Position { get; set; }
 
-        [ForeignKey(nameof(UserEntity))]
+        [ForeignKey(nameof(Winner))]
         [Column("WINNER_ID")]
-        public int WinnerId { get; set; }
+        public int? WinnerId { get; set; }
 
-        [ForeignKey(nameof(RaffleEntity))]
+        [ForeignKey(nameof(Raffle))]
         [Column("RAFFLE_ID")]
         public int RaffleId { get; set; }
     }
