@@ -3,6 +3,7 @@ using App.Rifas.Core.Mapping.Exceptions;
 using App.Rifas.Core.Mapping.Filters;
 using App.Rifas.Core.Mapping.InputModel.User;
 using App.Rifas.Core.Mapping.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Rifas.Core.Api.Controllers
@@ -40,11 +41,18 @@ namespace App.Rifas.Core.Api.Controllers
         }
 
         [HttpGet("{Id}")]
+        [Authorize]
         public IActionResult GetOne(
             int Id
             )
         {
             var result = userBll.getUser(Id);
+            /*
+            if(result.Email != User.Identity.Name)
+            {
+                throw new ForbiddenException("User is not valid !");
+            }
+            */
             return new OkObjectResult(result);
 
         }

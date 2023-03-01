@@ -18,6 +18,7 @@ using App.Rifas.Core.DataAccess.Repositories.RafflePrize;
 using App.Rifas.Core.Bll.RafflePrize;
 using App.Rifas.Core.DataAccess.Repositories.RaffleTicket;
 using App.Rifas.Core.Bll.RaffleTicket;
+using App.Rifas.Core.Api.Token;
 
 namespace App.Rifas.Core.Api
 {
@@ -69,7 +70,9 @@ namespace App.Rifas.Core.Api
 
             #endregion
 
-
+            #region AUTHENTICATION
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
+            #endregion
         }
     }
 }

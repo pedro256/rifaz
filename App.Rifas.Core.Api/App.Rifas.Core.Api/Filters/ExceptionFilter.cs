@@ -21,6 +21,10 @@ namespace App.Rifas.Core.Api.Filters
             {
                 sttCode = HttpStatusCode.BadRequest;
             }
+            if(context.Exception is ForbiddenException)
+            {
+                sttCode = HttpStatusCode.Forbidden;
+            }
 
             context.Result = new JsonResult(response) { StatusCode = (int)sttCode };
             

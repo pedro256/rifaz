@@ -66,7 +66,7 @@ namespace App.Rifas.Core.DataAccess.Repositories.Generic
             return Context
                     .Set<T>() 
                     .AsNoTracking()
-                    .SingleOrDefault(predicate);
+                    .FirstOrDefault(predicate);
         }
 
         public List<T> Listar(Expression<Func<T, bool>> filter = null,

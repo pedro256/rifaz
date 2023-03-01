@@ -2,8 +2,10 @@
 using App.Rifas.Core.DataAccess.Repositories.User;
 using App.Rifas.Core.Mapping.Exceptions;
 using App.Rifas.Core.Mapping.Filters;
+using App.Rifas.Core.Mapping.InputModel.Auth;
 using App.Rifas.Core.Mapping.InputModel.User;
 using App.Rifas.Core.Mapping.ViewModel;
+using BCrypt.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -181,6 +183,25 @@ namespace App.Rifas.Core.Bll.User
             }
             userRep.deleteUser(ett);
 
+            return true;
+        }
+
+        public bool validUserAuthentication(AuthIM auth)
+        {
+
+            UserEntity user = userRep.Selecionar(x => x.Email == auth.Username);
+
+            if(user == null)
+            {
+                throw new NotFoundException("User not found !");
+            }
+
+            bool isValid = BCrypt.Net.BCrypt.Verify(auth.Password, user.Password);
+
+            if (!isValid)
+            {
+                return false;
+            }
             return true;
         }
     }

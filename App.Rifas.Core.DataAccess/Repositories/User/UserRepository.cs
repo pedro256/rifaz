@@ -49,5 +49,6 @@ namespace App.Rifas.Core.DataAccess.Repositories.User
             }
             return false;
         }
+
     }
 }

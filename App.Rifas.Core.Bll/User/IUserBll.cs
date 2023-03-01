@@ -1,4 +1,5 @@
 ﻿using App.Rifas.Core.Mapping.Filters;
+using App.Rifas.Core.Mapping.InputModel.Auth;
 using App.Rifas.Core.Mapping.InputModel.User;
 using App.Rifas.Core.Mapping.ViewModel;
 using System;
@@ -12,6 +13,8 @@ namespace App.Rifas.Core.Bll.User
     public interface IUserBll
     {
         //void validCreationUserInput(UserIM user);
+
+        bool validUserAuthentication(AuthIM auth);
         UserVM createUser(UserIM user);
         UserVM updateUser(UserIM user);
         UserVM getUser(int id);
