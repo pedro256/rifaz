@@ -185,6 +185,9 @@ namespace App.Rifas.Core.DataAccess.Repositories.Generic
             PagedItems<T> paged = new PagedItems<T>();
 
             paged.Total = query.Count();
+            paged.Size = pagedFilter.Size.Value;
+            paged.Page = pagedFilter.Page.Value;
+
 
             if (!string.IsNullOrEmpty(pagedFilter.Sort))
             {
@@ -216,6 +219,7 @@ namespace App.Rifas.Core.DataAccess.Repositories.Generic
             var resultadoBusca = query.AsNoTracking().ToList();
 
             paged.Items = resultadoBusca;
+            
 
             return paged;
         }

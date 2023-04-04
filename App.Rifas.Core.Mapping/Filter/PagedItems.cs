@@ -13,5 +13,8 @@ namespace App.Rifas.Core.Mapping.Filters
         }
         public IList<T> Items { get; set; }
         public long? Total { get; set; }
+        public int Size { get; set; }
+        public int Page { get; set; }
+
     }
 }
