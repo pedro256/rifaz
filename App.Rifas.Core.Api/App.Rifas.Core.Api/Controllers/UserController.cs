@@ -20,6 +20,7 @@ namespace App.Rifas.Core.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetPaged(
             [FromQuery] UserPaginationIM iM
             )

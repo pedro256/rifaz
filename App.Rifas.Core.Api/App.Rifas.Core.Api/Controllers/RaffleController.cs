@@ -1,6 +1,7 @@
 ﻿using App.Rifas.Core.Bll.Raffle;
 using App.Rifas.Core.Mapping.Exceptions;
 using App.Rifas.Core.Mapping.InputModel.Raffle;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Rifas.Core.Api.Controllers
@@ -16,6 +17,7 @@ namespace App.Rifas.Core.Api.Controllers
             this.raffleBll = raffleBll;
         }
         [HttpGet]
+        [Authorize]
         public IActionResult GetPaged(
             [FromQuery] RafflePaginationIM filter
             )
