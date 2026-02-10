@@ -1,5 +1,11 @@
+using Api;
+using Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+//Add Injeção de Dependencias
+DependenceInjections.Config(builder);
 // Add services to the container.
 
 builder.Services.AddControllers();
