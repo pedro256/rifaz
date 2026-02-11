@@ -1,6 +1,7 @@
 using Api.Data;
 using Api.Entities;
 using Api.Repositories.Generic;
+using Api.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api;
@@ -21,6 +22,7 @@ public class DependenceInjections
         #endregion
 
         #region REPOSITORIES
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
         #endregion
 
         #region SERVICES

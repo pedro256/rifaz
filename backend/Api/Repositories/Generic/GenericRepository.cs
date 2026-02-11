@@ -147,9 +147,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             }
         }
 
-        var skip = (pagedFilter.Page.Value * pagedFilter.Size.Value) - pagedFilter.Size.Value;
+        var skip = (pagedFilter.Page * pagedFilter.Size) - pagedFilter.Size;
         query = query.Skip(skip);
-        query = query.Take(pagedFilter.Size.Value);
+        query = query.Take(pagedFilter.Size);
 
         paged.Items = query.ToList();
         return paged;
@@ -171,8 +171,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         PagedItems<T> paged = new PagedItems<T>();
 
         paged.Total = query.Count();
-        paged.Size = pagedFilter.Size.Value;
-        paged.Page = pagedFilter.Page.Value;
+        paged.Size = pagedFilter.Size;
+        paged.Page = pagedFilter.Page;
 
 
         if (!string.IsNullOrEmpty(pagedFilter.Sort))
@@ -198,9 +198,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             }
         }
 
-        var skip = (pagedFilter.Page.Value * pagedFilter.Size.Value) - pagedFilter.Size.Value;
+        var skip = (pagedFilter.Page * pagedFilter.Size) - pagedFilter.Size;
         query = query.Skip(skip);
-        query = query.Take(pagedFilter.Size.Value);
+        query = query.Take(pagedFilter.Size);
 
         var resultadoBusca = query.AsNoTracking().ToList();
 

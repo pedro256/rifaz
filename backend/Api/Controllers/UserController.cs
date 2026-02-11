@@ -1,0 +1,30 @@
+using Api.DTO.InputModel;
+using Api.Entities;
+using Api.Repositories.User;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Api.Controllers;
+
+[ApiController]
+[Route("user")]
+public class UserController : ControllerBase
+{
+    IUserRepository userRepository;
+    public UserController(IUserRepository userRepository)
+    {
+        this.userRepository = userRepository;
+    }
+    [HttpPost]
+    public UserEntity Index(
+        [FromBody]UserCreateRequest userCreateRequest)
+    {
+        UserEntity user = new UserEntity();
+        user.Name = userCreateRequest.FullName;
+        user.Email = userCreateRequest.Email;
+        user.CreatedAt = DateTime.UtcNow;
+        user.KcId = Guid.NewGuid();
+        user = this.userRepository.Create(user);
+
+        return user;
+    }
+}
