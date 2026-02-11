@@ -1,6 +1,6 @@
 namespace Api.Services.User;
 
-public class UserService
+public class UserService :IUserService
 {
     
 }
