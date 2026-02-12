@@ -1,20 +1,68 @@
-version: "3.9"
-
 services:
-  postgres:
+  database_api:
     image: postgres:16
-    container_name: postgres_db
-    restart: always
+    container_name: database_api_rifas
     env_file:
       - .env
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "${POSTGRES_PORT}:5432"
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_api_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+  database_keycloak:
+    image: postgres:14
+    container_name: database_keycloak_app_rifas
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DATABASE_KEYCLOAK_NAME}
+      POSTGRES_USER: ${DATABASE_KEYCLOAK_USER}
+      POSTGRES_PASSWORD: ${DATABASE_KEYCLOAK_PASSWORD}
+    ports:
+      - "${DATABASE_KEYCLOAK_PORT}:5432"
+    volumes:
+      - postgres_keycloak_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_KEYCLOAK_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  keycloak:
+    image: quay.io/keycloak/keycloak:20.0.5
+    container_name: keycloak_app_rifas
+    # command: start #para produção
+    command: start-dev
+    env_file:
+      - .env
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+
+      KC_DB: postgres
+      KC_DB_URL_HOST: database_keycloak
+      KC_DB_URL_DATABASE: ${DATABASE_KEYCLOAK_NAME}
+      KC_DB_USERNAME: ${DATABASE_KEYCLOAK_USER}
+      KC_DB_PASSWORD: ${DATABASE_KEYCLOAK_PASSWORD}
+
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    depends_on:
+      database_keycloak:
+        condition: service_healthy
+    networks:
+      - app_network
 
 volumes:
-  postgres_data:
+  postgres_api_data:
+  postgres_keycloak_data:
+
+networks:
+  app_network:
+    driver: bridge
