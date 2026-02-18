@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Ticket } from 'lucide-react';
 import { useApp } from '../contexts/AppContext';
 import { CampaignForm } from './CampaignForm';
 import { CampaignCard } from './CampaignCard';

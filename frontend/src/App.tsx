@@ -4,6 +4,7 @@ import { AdminDashboard } from './components/AdminDashboard';
 
 function App() {
   const [currentView, setCurrentView] = useState<'campaigns' | 'admin'>('campaigns');
+  
 
   return (
     <div className="min-h-screen bg-primary">
