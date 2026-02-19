@@ -14,8 +14,15 @@ public class UserController : ControllerBase
     {
         this.userRepository = userRepository;
     }
+
+    [HttpGet]
+    public String Test()
+    {
+        return "Test";
+    }
+    
     [HttpPost]
-    public UserEntity Index(
+    public ActionResult Index(
         [FromBody]UserCreateRequest userCreateRequest)
     {
         UserEntity user = new UserEntity();
@@ -25,6 +32,6 @@ public class UserController : ControllerBase
         user.KcId = Guid.NewGuid();
         user = this.userRepository.Create(user);
 
-        return user;
+        return Created();
     }
 }

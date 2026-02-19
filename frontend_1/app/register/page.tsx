@@ -5,19 +5,33 @@ import { useForm } from "react-hook-form";
 import { UserRegisterFormSchema, UserRegisterFormType } from "./validators/UserRegisterValidator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
+import { registerUserAction } from "./actions";
 
 export default function RegisterPage() {
-    const {
-        register,
-        formState:{errors},
-        handleSubmit
-    } = useForm<UserRegisterFormType>({
-        resolver:zodResolver(UserRegisterFormSchema)
-    })
+  const {
+    register,
+    formState: { errors },
+    handleSubmit
+  } = useForm<UserRegisterFormType>({
+    resolver: zodResolver(UserRegisterFormSchema)
+  })
 
-    function onSubmit(data:any){
-        alert(JSON.stringify(data))
+  async function onSubmit(data: UserRegisterFormType) {
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value as string);
+    });
+    try {
+      const result = await registerUserAction(formData);
+      alert("Usuario cadastrado")
+      console.log(result);
+    } catch (e){
+      alert("erro ao cadastrar: "+JSON.stringify(e))
     }
+
+  }
+
   return (
     <main className="flex justify-center mt-12">
       <div className="border w-[70%] py-8 px-6 rounded">
@@ -27,28 +41,28 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
             <Field className="col-span-1">
               <FieldLabel>Nome Completo:</FieldLabel>
-              <Input {...register("fullname")} name="fullname"/>
+              <Input {...register("fullname")} name="fullname" />
               {errors.fullname && <FieldError>{errors.fullname.message}</FieldError>}
             </Field>
             <Field className="col-span-1">
               <FieldLabel>Email:</FieldLabel>
-              <Input type="email"{...register("email")}/>
+              <Input type="email"{...register("email")} />
               {errors.email && <FieldError>{errors.email.message}</FieldError>}
             </Field>
             <Field className="col-span-1">
               <FieldLabel>Senha:</FieldLabel>
-              <Input type="password" {...register("password")} name="password"/>
+              <Input type="password" {...register("password")} name="password" />
               {errors.password && <FieldError>{errors.password.message}</FieldError>}
             </Field>
             <Field className="col-span-1">
               <FieldLabel>Repita a Senha:</FieldLabel>
-              <Input type="password" {...register("confirm_password")} name="confirm_password"/>
+              <Input type="password" {...register("confirm_password")} name="confirm_password" />
               {errors.confirm_password && <FieldError>{errors.confirm_password.message}</FieldError>}
             </Field>
             <div className="col-span-2 flex justify-end py-4">
-                <Button>Cadastrar</Button>
+              <Button>Cadastrar</Button>
             </div>
-            
+
           </form>
         </div>
       </div>
