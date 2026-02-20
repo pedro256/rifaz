@@ -23,4 +23,14 @@ public class UserRepository :GenericRepository<UserEntity>,IUserRepository
         Context.Users.Remove(user);
         Context.SaveChanges();
     }
+
+    public UserEntity GetByEmail(string email)
+    {
+       return Context.Users.Where(u => u.Email==email).First();
+    }
+
+    public bool ExistsEmail(string email)
+    {
+        return Context.Users.Where(u => u.Email==email).Count()>0;
+    }
 }

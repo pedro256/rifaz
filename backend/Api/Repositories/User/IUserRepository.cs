@@ -7,5 +7,7 @@ public interface IUserRepository :IGenericRepository<UserEntity>
 {
     UserEntity Create(UserEntity user);
     void Delete(UserEntity user);
-    
+    UserEntity GetByEmail(string email);
+    bool ExistsEmail(string email);
+
 }

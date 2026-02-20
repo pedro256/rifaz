@@ -6,6 +6,9 @@ import { UserRegisterFormSchema, UserRegisterFormType } from "./validators/UserR
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { registerUserAction } from "./actions";
+import { useDialog } from "@/components/dialog/dialog-provider";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
   const {
@@ -16,6 +19,10 @@ export default function RegisterPage() {
     resolver: zodResolver(UserRegisterFormSchema)
   })
 
+  const dialog = useDialog()
+  const route = useRouter()
+
+
   async function onSubmit(data: UserRegisterFormType) {
     const formData = new FormData();
 
@@ -24,10 +31,18 @@ export default function RegisterPage() {
     });
     try {
       const result = await registerUserAction(formData);
-      alert("Usuario cadastrado")
-      console.log(result);
-    } catch (e){
-      alert("erro ao cadastrar: "+JSON.stringify(e))
+      //  dialog.success({
+      //   title:"Cadastro Realizado com Sucesso !",
+      //   description: ""
+      // })
+      // console.log(result);
+      toast.success("Usuário Registrado.",{position:"top-center"})
+      route.push("/auth")
+    } catch (e:any){
+      dialog.error({
+        title:"Erro ao Cadastrar",
+        description:e.message
+      })
     }
 
   }

@@ -26,9 +26,12 @@ export async function registerUserAction(formData: FormData) {
         }
     );
 
+   
 
-    if (response.status!=201) {
-        throw new Error("Erro ao tentar cadastrar")
+
+    if (response.status!=204) {
+         const body =await response.json()
+        throw new Error(body.detail)
         // return { error: result.message };
     }
 
