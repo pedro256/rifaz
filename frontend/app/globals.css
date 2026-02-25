@@ -5,7 +5,7 @@
 
 :root {
     /* Paleta Original Enviada */
-    --background: oklch(1 0 0);
+    --background: oklch(98.231% 0.00837 271.335);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
@@ -21,6 +21,7 @@
     --accent-foreground: oklch(0.205 0 0);
     --destructive: oklch(0.577 0.245 27.325);
     --border: oklch(0.922 0 0);
+    --border-divider: oklch(0.74 0.01271 17.081);
     --input: oklch(0.922 0 0);
     --ring: oklch(0.708 0 0);
     
@@ -29,6 +30,7 @@
 
     /* Cores Criativas Harmônicas (Adicionais) */
     /* Um verde esmeralda para representar lucro/sucesso */
+
     --success: oklch(0.627 0.194 149.214);
     --success-foreground: oklch(0.985 0 0);
     
@@ -121,6 +123,7 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-border-divider: var(--border-divider);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
