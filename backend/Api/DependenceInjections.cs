@@ -2,6 +2,7 @@ using Api.Data;
 using Api.Entities;
 using Api.Repositories.Generic;
 using Api.Repositories.User;
+using Api.Services.Keycloak;
 using Api.Services.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,11 @@ public class DependenceInjections
 
         #region SERVICES
         builder.Services.AddScoped<IUserService,UserService>();
+        // builder.Services.AddScoped<IKeycloakService,KeycloakService>();
+        #endregion
+
+        #region HTTP CLIENTS
+        builder.Services.AddHttpClient<IKeycloakService, KeycloakService>();
         #endregion
 
     }

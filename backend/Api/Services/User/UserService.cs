@@ -1,19 +1,26 @@
+using System.Threading.Tasks;
 using Api.DTO.InputModel;
 using Api.Entities;
 using Api.Exceptions;
 using Api.Repositories.User;
+using Api.Services.Keycloak;
+using Microsoft.Extensions.Logging;
+
+
 
 namespace Api.Services.User;
 
 public class UserService :IUserService
 {
     IUserRepository userRepository;
-    public UserService(IUserRepository userRepository)
+    IKeycloakService keycloakService;
+    public UserService(IUserRepository userRepository,IKeycloakService keycloakService)
     {
         this.userRepository = userRepository;
+        this.keycloakService = keycloakService;
     }
 
-    public Guid Cadastrar(UserCreateRequest ToCreate)
+    public async Task<Guid> Cadastrar(UserCreateRequest ToCreate)
     {
         if (this.userRepository.ExistsEmail(ToCreate.Email))
         {
@@ -23,8 +30,17 @@ public class UserService :IUserService
         user.Name = ToCreate.FullName;
         user.Email = ToCreate.Email;
         user.CreatedAt = DateTime.UtcNow;
-        user.KcId = Guid.NewGuid();
-        user = this.userRepository.Create(user);
+
+        // user.KcId = Guid.NewGuid();
+        // user = this.userRepository.Create(user);
+
+
+        var IdKeycloak = await this.keycloakService.CreateUserAsync(user.Email,user.Email,user.Name,"");
+
+        
+        // user.KcId = Guid.Parse(IdKeycloak);
+        
+
         return user.Id;
     }
 }

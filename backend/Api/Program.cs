@@ -1,9 +1,14 @@
 using Api;
 using Api.Data;
+using Api.DTO.Keycloak;
 using Api.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<KeycloakSettings>(
+    builder.Configuration.GetSection("KeycloakApi"));
+
 
 //Add Injeção de Dependencias
 DependenceInjections.Config(builder);

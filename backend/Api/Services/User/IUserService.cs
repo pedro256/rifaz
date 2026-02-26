@@ -4,5 +4,5 @@ namespace Api.Services.User;
 
 public interface IUserService
 {
-    public Guid Cadastrar(UserCreateRequest ToCreate);
+    public Task<Guid> Cadastrar(UserCreateRequest ToCreate);
 }

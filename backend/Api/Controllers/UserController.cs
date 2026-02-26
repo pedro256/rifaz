@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Api.DTO.InputModel;
 using Api.Entities;
 using Api.Exceptions;
@@ -24,10 +25,10 @@ public class UserController : ControllerBase
     }
     
     [HttpPost]
-    public ActionResult Index(
+    public async Task<ActionResult> Index(
         [FromBody]UserCreateRequest userCreateRequest)
     {
-        this.userService.Cadastrar(userCreateRequest);
-        return Created();
+        await userService.Cadastrar(userCreateRequest);
+        return Ok("ww");
     }
 }
