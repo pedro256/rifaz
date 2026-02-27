@@ -30,15 +30,11 @@ public class UserService :IUserService
         user.Name = ToCreate.FullName;
         user.Email = ToCreate.Email;
         user.CreatedAt = DateTime.UtcNow;
-
-        // user.KcId = Guid.NewGuid();
-        // user = this.userRepository.Create(user);
-
-
         var IdKeycloak = await this.keycloakService.CreateUserAsync(user.Email,user.Email,user.Name,"");
-
-        
-        // user.KcId = Guid.Parse(IdKeycloak);
+        await this.keycloakService.SetUserPasswordAsync(IdKeycloak,ToCreate.Password);
+        user.KcId = Guid.Parse(IdKeycloak);
+        user = this.userRepository.Create(user);
+      
         
 
         return user.Id;

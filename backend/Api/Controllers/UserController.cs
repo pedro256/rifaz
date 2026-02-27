@@ -29,6 +29,6 @@ public class UserController : ControllerBase
         [FromBody]UserCreateRequest userCreateRequest)
     {
         await userService.Cadastrar(userCreateRequest);
-        return Ok("ww");
+        return Created();
     }
 }

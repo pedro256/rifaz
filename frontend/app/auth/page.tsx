@@ -1,31 +1,56 @@
-'use client';
+"use client";
 import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { SignInFormSchema, SignInFormType } from "@/app/auth/validators/SignInFormValidator";
+import {
+  SignInFormSchema,
+  SignInFormType,
+} from "@/app/auth/validators/SignInFormValidator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { LogIn, KeyRound, User, ArrowRight } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useDialog } from "@/components/dialog/dialog-provider";
 
 export default function AuthPage() {
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors, isSubmitting } 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
   } = useForm<SignInFormType>({
-    resolver: zodResolver(SignInFormSchema)
-  })
+    resolver: zodResolver(SignInFormSchema),
+  });
+  const router = useRouter();
+  const dialog = useDialog();
+  const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = (data: any) => {
-    console.log(data)
-  }
+  const onSubmit = async (data: any) => {
+    const response = await signIn("application", {
+      ...data,
+      redirect: false,
+    });
+    if (response?.error) {
+      setError(response.error)
+      return;
+    }
+    dialog.success({
+      title:"Usuário logado!"
+    })
+    router.push("/home")
+  };
 
   return (
     <main className="min-h-screen bg-background flex items-center justify-center p-4">
       {/* Container Principal com a paleta OKLCH */}
       <div className="w-full max-w-[440px] bg-card border border-border rounded-radius shadow-2xl shadow-black/[0.03] overflow-hidden">
-        
         {/* Header de Boas-vindas */}
         <div className="px-8 pt-12 pb-6 text-center">
           <div className="inline-flex items-center justify-center bg-primary p-3 rounded-2xl mb-6 shadow-lg shadow-primary/10">
@@ -35,15 +60,16 @@ export default function AuthPage() {
             Bem-vindo de volta
           </h1>
           <p className="text-muted-foreground text-sm leading-relaxed px-4">
-            Acesse sua conta para gerenciar seus sorteios e acompanhar suas vendas em tempo real.
+            Acesse sua conta para gerenciar seus sorteios e acompanhar suas
+            vendas em tempo real.
           </p>
         </div>
 
         {/* Formulário */}
         <div className="px-8 pb-10">
+          {error ? (<p className="text-red-500 text-base pb-4">{error}</p>):undefined}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <FieldGroup className="flex flex-col gap-5">
-              
               {/* Campo de Usuário */}
               <Field className="flex flex-col gap-2">
                 <FieldLabel className="text-[10px] uppercase tracking-[0.15em] font-black text-muted-foreground ml-1">
@@ -51,13 +77,17 @@ export default function AuthPage() {
                 </FieldLabel>
                 <div className="relative group">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
-                  <Input 
-                    {...register("username")} 
+                  <Input
+                    {...register("username")}
                     className="pl-10 bg-background border-input focus:ring-ring h-11"
                     placeholder="Seu nome de usuário"
                   />
                 </div>
-                {errors.username && <FieldError className="text-destructive text-xs italic">{errors.username.message}</FieldError>}
+                {errors.username && (
+                  <FieldError className="text-destructive text-xs italic">
+                    {errors.username.message}
+                  </FieldError>
+                )}
               </Field>
 
               {/* Campo de Senha */}
@@ -66,25 +96,32 @@ export default function AuthPage() {
                   <FieldLabel className="text-[10px] uppercase tracking-[0.15em] font-black text-muted-foreground">
                     Senha
                   </FieldLabel>
-                  <Link href="#" className="text-[10px] font-bold text-muted-foreground hover:text-foreground transition-colors uppercase">
+                  <Link
+                    href="#"
+                    className="text-[10px] font-bold text-muted-foreground hover:text-foreground transition-colors uppercase"
+                  >
                     Esqueceu?
                   </Link>
                 </div>
                 <div className="relative group">
                   <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
-                  <Input 
+                  <Input
                     type="password"
-                    {...register("password")} 
+                    {...register("password")}
                     className="pl-10 bg-background border-input focus:ring-ring h-11"
                     placeholder="••••••••"
                   />
                 </div>
-                {errors.password && <FieldError className="text-destructive text-xs italic">{errors.password.message}</FieldError>}
+                {errors.password && (
+                  <FieldError className="text-destructive text-xs italic">
+                    {errors.password.message}
+                  </FieldError>
+                )}
               </Field>
 
               {/* Botão de Ação Principal */}
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full h-12 bg-primary text-primary-foreground rounded-radius font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-[0.98] mt-2 shadow-lg shadow-primary/5"
               >
@@ -98,9 +135,9 @@ export default function AuthPage() {
         {/* Footer com link de registro */}
         <div className="bg-muted/30 border-t border-border py-6 text-center">
           <span className="text-sm text-muted-foreground">
-            Novo por aqui?{' '}
-            <Link 
-              href="/register" 
+            Novo por aqui?{" "}
+            <Link
+              href="/register"
               className="text-link font-bold hover:underline decoration-primary underline-offset-4"
             >
               Criar uma conta gratuita

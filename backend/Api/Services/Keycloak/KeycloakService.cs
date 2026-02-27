@@ -41,9 +41,9 @@ public class KeycloakService :IKeycloakService
         var token = await GetAdminTokenAsync();
 
 
-        using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
-        ILogger logger = factory.CreateLogger("Program");
-        logger.LogInformation("Token JWT :{tk}.", token);
+        // using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+        // ILogger logger = factory.CreateLogger("Program");
+        // logger.LogInformation("Token JWT :{tk}.", token);
 
 
         _httpClient.DefaultRequestHeaders.Authorization =
@@ -128,26 +128,26 @@ public class KeycloakService :IKeycloakService
         response.EnsureSuccessStatusCode();
     }
 
-    // public async Task<TokenResponse> LoginAsync( string username, string password)
-    // {
-    //     var content = new FormUrlEncodedContent(new Dictionary<string, string>
-    //     {
-    //         { "client_id", _settings.Client_Id },
-    //         { "client_secret", _settings.Client_Secret },
-    //         { "grant_type", "password" },
-    //         { "username", username },
-    //         { "password", password }
-    //     });
+    public async Task<TokenResponse> LoginAsync( string username, string password)
+    {
+        var content = new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            { "client_id", _settings.Client_Id },
+            { "client_secret", _settings.Client_Secret },
+            { "grant_type", "password" },
+            { "username", username },
+            { "password", password }
+        });
 
-    //     var response = await _httpClient.PostAsync(
-    //         $"{_settings.UrlBase}/realms/{_settings.Realm}/protocol/openid-connect/token",
-    //         content);
+        var response = await _httpClient.PostAsync(
+            $"{_settings.UrlBase}/realms/{_settings.Realm}/protocol/openid-connect/token",
+            content);
 
-    //     response.EnsureSuccessStatusCode();
+        response.EnsureSuccessStatusCode();
 
-    //     var json = await response.Content.ReadAsStringAsync();
+        var json = await response.Content.ReadAsStringAsync();
 
-    //     return JsonSerializer.Deserialize<TokenResponse>(json,
-    //         new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
-    // }
+        return JsonSerializer.Deserialize<TokenResponse>(json,
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+    }
 }

@@ -1,11 +1,14 @@
-import { User, LayoutDashboard, Ticket, LogOut, Users } from "lucide-react";
+import { User, LayoutDashboard, Ticket} from "lucide-react";
 import LogoRifasPro from "../_components/LogoRifasPro";
+import SidebarSignOut from "./_components/sidebar-signout/SidebarSignOut";
+import { getServerSession } from "next-auth";
 
-export default function LayoutAuthenticatedArea({
+export default async function LayoutAuthenticatedArea({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       {/* --- SIDEBAR --- */}
@@ -37,19 +40,18 @@ export default function LayoutAuthenticatedArea({
 
         <div className="p-4 border-t border-border-divider">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
+           
             <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center border border-border">
               <User size={16} />
             </div>
             <div className="flex flex-col overflow-hidden">
-              <span className="text-sm font-bold truncate">João Silva</span>
+              <span className="text-sm font-bold truncate">{session?.user?.name}</span>
               <span className="text-[10px] text-muted-foreground truncate italic">
                 Pro Account
               </span>
             </div>
           </div>
-          <button className="flex items-center gap-3 w-full px-3 py-2 text-destructive hover:bg-destructive/10 rounded-radius transition-all text-sm font-medium">
-            <LogOut size={16} /> Sair
-          </button>
+          <SidebarSignOut/>
         </div>
       </aside>
       {children}
